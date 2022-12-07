@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: install httpd
+      action: yum name=httpd state=present
+      
+    - name: install git
+      action: yum name=git state=present
+
+    - name: getting code from github
+      git:
+        repo: "https://github.com/prabandha010/terraform-repo.git"
+        dest: "/ec2-user/code/"
+
+       
